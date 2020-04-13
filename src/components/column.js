@@ -15,7 +15,13 @@ class Column extends Component {
         <div className="column">
           <h4 className={this.props.cardHeader}>{this.props.name}</h4>
           {this.props.cards.map((card, index) => {
-            return <Card key={card.id} title={card.title} />;
+            return (
+              <Card
+                orientation={this.props.orientation}
+                key={card.id}
+                title={card.title}
+              />
+            );
           })}
           <button onClick={this.props.onClick}>Add a card +</button>
         </div>

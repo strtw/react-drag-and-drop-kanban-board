@@ -3,6 +3,11 @@
   flex-direction: row;
 }
 
+.card {
+  display: flex;
+  justify-content: space-between;
+}
+
 .column {
   width: 20%;
   margin-left: 25px;

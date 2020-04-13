@@ -38,6 +38,7 @@ class Board extends Component {
     return (
       <div className="board">
         <Column
+          orientation={"left"}
           cards={this.state.pending}
           onClick={() => this.onClick("pending")}
           cardHeader={"purple"}
@@ -60,6 +61,7 @@ class Board extends Component {
           onClick={() => this.onClick("tested")}
           cardHeader={"orange"}
           name={"Tested"}
+          orientation={"right"}
         ></Column>
       </div>
     );

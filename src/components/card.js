@@ -7,10 +7,18 @@ class Card extends Component {
 
   render() {
     return (
-      <div>
-        <span className="leftNav">{"<"}</span>
+      <div className="card">
+        {this.props.orientation === "left" ? (
+          <></>
+        ) : (
+          <span className="leftNav">{"<"}</span>
+        )}
         {this.props.title}
-        <span className="rightNav">{">"}</span>
+        {this.props.orientation === "right" ? (
+          <></>
+        ) : (
+          <span className="rightNav">{">"}</span>
+        )}
       </div>
     );
   }
