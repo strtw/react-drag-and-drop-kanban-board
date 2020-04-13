@@ -22,6 +22,7 @@ class Board extends Component {
         { id: 4, title: "Bug fix" },
         { id: 8, title: "Create test plan" },
       ],
+      order: ["Pending", "In progress", "Completed", "Tested"],
     };
   }
 
@@ -40,27 +41,27 @@ class Board extends Component {
         <Column
           orientation={"left"}
           cards={this.state.pending}
-          onClick={() => this.onClick("pending")}
+          onClick={() => this.onClick(this.state.order[0])}
           cardHeader={"purple"}
-          name={"Pending"}
+          name={this.state.order[0]}
         ></Column>
         <Column
           cards={this.state["in progress"]}
-          onClick={() => this.onClick("in progress")}
+          onClick={() => this.onClick(this.state.order[1])}
           cardHeader={"teal"}
-          name={"In Progress"}
+          name={this.state.order[1]}
         ></Column>
         <Column
           cards={this.state.completed}
-          onClick={() => this.onClick("completed")}
+          onClick={() => this.onClick(this.state.order[2])}
           cardHeader={"darkgreen"}
-          name={"Completed"}
+          name={this.state.order[2]}
         ></Column>
         <Column
           cards={this.state.tested}
-          onClick={() => this.onClick("tested")}
+          onClick={() => this.onClick(this.state.order[3])}
           cardHeader={"orange"}
-          name={"Tested"}
+          name={this.state.order[3]}
           orientation={"right"}
         ></Column>
       </div>
