@@ -26,19 +26,25 @@ class Board extends Component {
     };
 
     this.onNavClick = this.onNavClick.bind(this);
+    this.onCardBlur = this.onCardBlur.bind(this);
   }
 
   onClick = (type) => {
-    var result = window.prompt("Add a new card");
-    while (result && result.trim() === "") {
-      result = window.prompt("Add a new card");
-    }
-    if (result) {
-      var newCard = {};
-      newCard.id = Math.random();
-      newCard.title = result;
-      this.setState({ [type]: this.state[type].concat(newCard) });
-    }
+    var newCard = {};
+    newCard.id = new Date().getTime();
+    newCard.title = "Add a new title...";
+    this.setState({ [type]: this.state[type].concat(newCard) });
+  };
+
+  onCardBlur = (event, card, parent) => {
+    var filteredColumn = this.state[parent].filter(
+      //filter out old title
+      (item) => item.id !== card.id
+    );
+    card.title = event.target.value;
+    var newColumn = filteredColumn.concat(card); //add new card value to state
+
+    this.setState({ [parent]: newColumn });
   };
 
   onNavClick = (event, card, parentCategory) => {
@@ -72,6 +78,7 @@ class Board extends Component {
           orientation={"left"}
           cards={this.state.pending}
           onClick={() => this.onClick(this.state.order[0])}
+          onCardBlur={this.onCardBlur}
           cardHeader={"purple"}
           name={this.state.order[0]}
         ></Column>
@@ -79,6 +86,7 @@ class Board extends Component {
           onNavClick={this.onNavClick}
           cards={this.state["in progress"]}
           onClick={() => this.onClick(this.state.order[1])}
+          onCardBlur={this.onCardBlur}
           cardHeader={"teal"}
           name={this.state.order[1]}
         ></Column>
@@ -86,6 +94,7 @@ class Board extends Component {
           onNavClick={this.onNavClick}
           cards={this.state.completed}
           onClick={() => this.onClick(this.state.order[2])}
+          onCardBlur={this.onCardBlur}
           cardHeader={"darkgreen"}
           name={this.state.order[2]}
         ></Column>
@@ -93,6 +102,7 @@ class Board extends Component {
           onNavClick={this.onNavClick}
           cards={this.state.tested}
           onClick={() => this.onClick(this.state.order[3])}
+          onCardBlur={this.onCardBlur}
           cardHeader={"orange"}
           name={this.state.order[3]}
           orientation={"right"}

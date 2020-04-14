@@ -21,6 +21,7 @@ class Column extends Component {
               <Card
                 parent={this.props.name}
                 onClick={this.props.onNavClick}
+                onCardBlur={this.props.onCardBlur}
                 orientation={this.props.orientation}
                 id={card.id}
                 key={card.id}

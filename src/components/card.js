@@ -5,8 +5,14 @@ class Card extends Component {
     super(props);
   }
 
+  handleKeyDown(e) {
+    e.target.style.height = "inherit";
+    e.target.style.height = `${e.target.scrollHeight}px`;
+  }
+
   render() {
     let card = { id: this.props.id, title: this.props.title };
+    console.log(this.props);
     return (
       <div className="card">
         {this.props.orientation === "left" ? (
@@ -21,7 +27,15 @@ class Card extends Component {
             {"<"}
           </span>
         )}
-        {this.props.title}
+        <textarea
+          className="card__field"
+          defaultValue={this.props.title}
+          value={this.props.value}
+          onKeyUp={this.handleKeyDown}
+          onBlur={(event) => {
+            this.props.onCardBlur(event, card, this.props.parent);
+          }}
+        />
         {this.props.orientation === "right" ? (
           <span> </span>
         ) : (

@@ -16,9 +16,22 @@ body {
   display: flex;
   justify-content: space-between;
   border-radius: 3px;
-  padding: 15px;
+  padding: 15px 5px 0 5px;
   margin: 10px;
   background-color: white;
+}
+
+.card__field {
+  border: none;
+  box-shadow: none;
+  overflow-y: hidden;
+  padding: 0;
+  width: 92%;
+  overflow-wrap: break-word;
+  resize: none;
+  outline: none;
+  font-size: 1em;
+  margin: 0px 10px 10px 10px;
 }
 
 .column {
