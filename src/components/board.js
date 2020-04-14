@@ -30,13 +30,15 @@ class Board extends Component {
 
   onClick = (type) => {
     var result = window.prompt("Add a new card");
-    while (result.trim() === "") {
+    while (result && result.trim() === "") {
       result = window.prompt("Add a new card");
     }
-    var newCard = {};
-    newCard.id = Math.random();
-    newCard.title = result;
-    this.setState({ [type]: this.state[type].concat(newCard) });
+    if (result) {
+      var newCard = {};
+      newCard.id = Math.random();
+      newCard.title = result;
+      this.setState({ [type]: this.state[type].concat(newCard) });
+    }
   };
 
   onNavClick = (event, card, parentCategory) => {
