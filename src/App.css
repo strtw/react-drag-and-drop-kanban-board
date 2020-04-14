@@ -1,17 +1,50 @@
+body {
+  background: linear-gradient(#3eb9de, #3a80de);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
 .board {
   display: flex;
   flex-direction: row;
+  justify-content: space-around;
 }
 
 .card {
   display: flex;
   justify-content: space-between;
+  border-radius: 3px;
+  padding: 15px;
+  margin: 10px;
+  background-color: white;
 }
 
 .column {
-  width: 20%;
-  margin-left: 25px;
-  margin-right: 25px;
+  width: 28%;
+  margin: 25px;
+  background-color: #e5eff5;
+  border-radius: 3px;
+  height: 0%;
+}
+
+.column__add-card {
+  padding: 0.25rem 0.5rem;
+  font-size: 1.09375rem;
+  line-height: 1.5;
+  border-radius: 0.2rem;
+  display: inline-block;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  margin: 3px;
+}
+
+.column__header {
+  padding: 12px;
+  margin-top: 0;
+  cursor: default;
 }
 
 .purple {
@@ -32,4 +65,8 @@
 .orange {
   color: #ffffff;
   background-color: #e8741e;
+}
+
+span[class*="Nav"] {
+  cursor: pointer;
 }

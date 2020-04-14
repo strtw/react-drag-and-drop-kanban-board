@@ -10,7 +10,7 @@ class Card extends Component {
     return (
       <div className="card">
         {this.props.orientation === "left" ? (
-          <></>
+          <span> </span>
         ) : (
           <span
             onClick={(event) =>
@@ -23,7 +23,7 @@ class Card extends Component {
         )}
         {this.props.title}
         {this.props.orientation === "right" ? (
-          <></>
+          <span> </span>
         ) : (
           <span
             onClick={(event) =>

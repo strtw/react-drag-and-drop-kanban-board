@@ -13,7 +13,7 @@ class Column extends Component {
     return (
       <>
         <div className="column">
-          <h4 className={this.props.cardHeader}>
+          <h4 className={[this.props.cardHeader, "column__header"].join(" ")}>
             {this.capitalizeFirstLetter(this.props.name)}
           </h4>
           {this.props.cards.map((card, index) => {
@@ -28,7 +28,9 @@ class Column extends Component {
               />
             );
           })}
-          <button onClick={this.props.onClick}>Add a card +</button>
+          <button className={"column__add-card"} onClick={this.props.onClick}>
+            Add a card +
+          </button>
         </div>
       </>
     );

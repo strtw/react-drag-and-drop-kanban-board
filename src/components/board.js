@@ -30,11 +30,12 @@ class Board extends Component {
 
   onClick = (type) => {
     var result = window.prompt("Add a new card");
+    while (result.trim() === "") {
+      result = window.prompt("Add a new card");
+    }
     var newCard = {};
     newCard.id = Math.random();
     newCard.title = result;
-    console.log(this.state[type]);
-
     this.setState({ [type]: this.state[type].concat(newCard) });
   };
 
