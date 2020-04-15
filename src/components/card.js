@@ -10,13 +10,22 @@ class Card extends Component {
     e.target.style.height = `${e.target.scrollHeight}px`;
   }
 
+  handleDragStart(e, card, parent) {
+    card.previousParent = parent;
+    e.dataTransfer.setData("text/plain", JSON.stringify(card));
+  }
+
   render() {
     let card = { id: this.props.id, title: this.props.title };
     //const Card = React.forwardRef((props, ref) => (
 
     // );
     return (
-      <div className="card">
+      <div
+        className="card"
+        draggable
+        onDragStart={(e) => this.handleDragStart(e, card, this.props.parent)}
+      >
         {this.props.orientation === "left" ? (
           <span> </span>
         ) : (

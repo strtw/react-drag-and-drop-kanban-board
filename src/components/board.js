@@ -24,7 +24,6 @@ class Board extends Component {
       ],
       order: ["pending", "in progress", "completed", "tested"],
     };
-
     this.onNavClick = this.onNavClick.bind(this);
     this.onCardBlur = this.onCardBlur.bind(this);
   }
@@ -54,6 +53,22 @@ class Board extends Component {
     this.setState({ [parent]: cloneState });
   };
 
+  onHandleDrop = (e, cardHeader) => {
+    e.preventDefault();
+    e.stopPropagation();
+    var data = JSON.parse(e.dataTransfer.getData("text"));
+    console.log("dropped", data, cardHeader);
+    if (data.previousParent !== cardHeader) {
+      //Prevent cards from being duplicated in a column
+      this.setState({
+        [data.previousParent]: this.state[data.previousParent].filter(
+          (item) => item.id !== data.id
+        ),
+      });
+      this.setState({ [cardHeader]: this.state[cardHeader].concat(data) });
+    }
+  };
+
   onNavClick = (event, card, parentCategory) => {
     var columns = this.state.order;
     for (let i = 0; i < columns.length; i++) {
@@ -77,10 +92,21 @@ class Board extends Component {
     }
   };
 
+  componentDidMount() {
+    this.localState = JSON.parse(localStorage.getItem("state"));
+    this.setState({ ...this.localState }); //update app state from localStorage
+  }
+
+  componentDidUpdate() {
+    var stringState = JSON.stringify(this.state);
+    localStorage.setItem("state", stringState); //state app state
+  }
+
   render() {
     return (
       <div className="board">
         <Column
+          onHandleDrop={this.onHandleDrop}
           onNavClick={this.onNavClick}
           orientation={"left"}
           cards={this.state.pending}
@@ -90,6 +116,7 @@ class Board extends Component {
           name={this.state.order[0]}
         ></Column>
         <Column
+          onHandleDrop={this.onHandleDrop}
           onNavClick={this.onNavClick}
           cards={this.state["in progress"]}
           onClick={() => this.onClick(this.state.order[1])}
@@ -98,6 +125,7 @@ class Board extends Component {
           name={this.state.order[1]}
         ></Column>
         <Column
+          onHandleDrop={this.onHandleDrop}
           onNavClick={this.onNavClick}
           cards={this.state.completed}
           onClick={() => this.onClick(this.state.order[2])}
@@ -106,6 +134,7 @@ class Board extends Component {
           name={this.state.order[2]}
         ></Column>
         <Column
+          onHandleDrop={this.onHandleDrop}
           onNavClick={this.onNavClick}
           cards={this.state.tested}
           onClick={() => this.onClick(this.state.order[3])}

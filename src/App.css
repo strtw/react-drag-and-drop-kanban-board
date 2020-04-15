@@ -19,6 +19,7 @@ body {
   padding: 15px 5px 0 5px;
   margin: 10px;
   background-color: white;
+  cursor: grab;
 }
 
 .card__field {
