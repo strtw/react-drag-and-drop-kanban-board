@@ -12,11 +12,7 @@ class Card extends Component {
 
   render() {
     let card = { id: this.props.id, title: this.props.title };
-<<<<<<< HEAD
-    return (
-=======
     const Card = React.forwardRef((props, ref) => (
->>>>>>> WIP: focus last card on add card button click
       <div className="card">
         {this.props.orientation === "left" ? (
           <span> </span>
