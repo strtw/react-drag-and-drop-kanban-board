@@ -1,4 +1,5 @@
-#Kanban Board
+# Kanban Board
+
 A simple kanban board built with React
 
 - automatically saves application state to localStorage so users can refresh the page without losing data
