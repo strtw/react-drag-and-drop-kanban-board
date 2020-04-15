@@ -32,7 +32,6 @@ class Board extends Component {
   onClick = (type) => {
     var newCard = {};
     newCard.id = new Date().getTime();
-    newCard.title = "Add a new title...";
     this.setState({ [type]: this.state[type].concat(newCard) });
   };
 

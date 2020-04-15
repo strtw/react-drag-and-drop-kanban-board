@@ -28,7 +28,8 @@ class Card extends Component {
         )}
         <textarea
           className="card__field"
-          placeholder={this.props.title}
+          placeholder={"Add a new title..."}
+          defaultValue={this.props.title ? this.props.title : null}
           value={this.props.value}
           onKeyUp={this.handleKeyDown}
           onBlur={(event) => {
