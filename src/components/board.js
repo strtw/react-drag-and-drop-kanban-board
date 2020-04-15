@@ -71,6 +71,7 @@ class Board extends Component {
 
   onNavClick = (event, card, parentCategory) => {
     var columns = this.state.order;
+    console.log(event.currentTarget.classList);
     for (let i = 0; i < columns.length; i++) {
       //loop through parent columns
       var currentColumn = columns[i];
@@ -79,11 +80,11 @@ class Board extends Component {
       );
       if (currentColumn === parentCategory) {
         //if current column is same as current card's parent
-        if (event.target.className === "leftNav") {
+        if (event.currentTarget.classList.contains("leftNav")) {
           var previous = columns[i - 1]; //find the previous column
           this.setState({ [previous]: this.state[previous].concat(card) }); //update previous column state
           this.setState({ [currentColumn]: filteredColumn }); //remove card from current column state
-        } else if (event.target.className === "rightNav") {
+        } else if (event.currentTarget.classList.contains("rightNav")) {
           var next = columns[i + 1]; //find the next column
           this.setState({ [next]: this.state[next].concat(card) }); //update next column state
           this.setState({ [currentColumn]: filteredColumn }); //remove card from current column state
@@ -112,7 +113,7 @@ class Board extends Component {
           cards={this.state.pending}
           onClick={() => this.onClick(this.state.order[0])}
           onCardBlur={this.onCardBlur}
-          cardHeader={"purple"}
+          cardHeader={"dark"}
           name={this.state.order[0]}
         ></Column>
         <Column
@@ -121,7 +122,7 @@ class Board extends Component {
           cards={this.state["in progress"]}
           onClick={() => this.onClick(this.state.order[1])}
           onCardBlur={this.onCardBlur}
-          cardHeader={"teal"}
+          cardHeader={"dark"}
           name={this.state.order[1]}
         ></Column>
         <Column
@@ -130,7 +131,7 @@ class Board extends Component {
           cards={this.state.completed}
           onClick={() => this.onClick(this.state.order[2])}
           onCardBlur={this.onCardBlur}
-          cardHeader={"darkgreen"}
+          cardHeader={"dark"}
           name={this.state.order[2]}
         ></Column>
         <Column
@@ -139,7 +140,7 @@ class Board extends Component {
           cards={this.state.tested}
           onClick={() => this.onClick(this.state.order[3])}
           onCardBlur={this.onCardBlur}
-          cardHeader={"orange"}
+          cardHeader={"dark"}
           name={this.state.order[3]}
           orientation={"right"}
         ></Column>

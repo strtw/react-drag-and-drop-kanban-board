@@ -1,5 +1,6 @@
 body {
   background: linear-gradient(#3eb9de, #3a80de);
+  background: linear-gradient(#3a80de, #3eb9de);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -32,7 +33,7 @@ body {
   resize: none;
   outline: none;
   font-size: 1em;
-  margin: 0px 10px 10px 10px;
+  margin: 6px 10px 10px 10px;
 }
 
 .column {
@@ -61,26 +62,30 @@ body {
   cursor: default;
 }
 
-.purple {
+.dark {
   color: #ffffff;
-  background-color: #8e6e95;
+  background-color: #6f6f6f;
 }
 
 .teal {
   color: #ffffff;
-  background-color: #39a59c;
+  background-color: #d1caa1;
 }
 
 .darkgreen {
   color: #ffffff;
-  background-color: #344759;
+  background-color: #d4d6b9;
 }
 
 .orange {
   color: #ffffff;
-  background-color: #e8741e;
+  background-color: #6717E;
+}
+
+svg[class*="fa-caret"] {
+  cursor: pointer;
 }
 
 span[class*="Nav"] {
-  cursor: pointer;
+  color: lightgray;
 }

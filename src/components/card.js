@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCaretRight, faCaretLeft } from "@fortawesome/free-solid-svg-icons";
 
 class Card extends Component {
   constructor(props) {
@@ -23,7 +25,7 @@ class Card extends Component {
     return (
       <div
         className="card"
-        draggable
+        draggable="true"
         onDragStart={(e) => this.handleDragStart(e, card, this.props.parent)}
       >
         {this.props.orientation === "left" ? (
@@ -35,10 +37,11 @@ class Card extends Component {
             }
             className="leftNav"
           >
-            {"<"}
+            <FontAwesomeIcon size="2x" icon={faCaretLeft} />
           </span>
         )}
         <textarea
+          draggable="false"
           ref={this.props.cardField} //this talks with parent to give parent access to ref
           className="card__field"
           placeholder={"Add a new title..."}
@@ -53,12 +56,12 @@ class Card extends Component {
           <span> </span>
         ) : (
           <span
+            className="rightNav"
             onClick={(event) =>
               this.props.onClick(event, card, this.props.parent)
             }
-            className="rightNav"
           >
-            {">"}
+            <FontAwesomeIcon size="2x" icon={faCaretRight} />
           </span>
         )}
       </div>
