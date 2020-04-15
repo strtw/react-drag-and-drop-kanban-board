@@ -37,14 +37,19 @@ class Board extends Component {
   };
 
   onCardBlur = (event, card, parent) => {
-    var filteredColumn = this.state[parent].filter(
-      //filter out old title
-      (item) => item.id !== card.id
-    );
+    var idToReplace;
     card.title = event.target.value;
-    var newColumn = filteredColumn.concat(card); //add new card value to state
 
-    this.setState({ [parent]: newColumn });
+    this.state[parent].forEach((item, index) => {
+      if (item.id === card.id) {
+        idToReplace = index;
+      }
+    });
+
+    var cloneState = Object.assign(this.state[parent]);
+    cloneState[idToReplace] = card;
+
+    this.setState({ [parent]: cloneState });
   };
 
   onNavClick = (event, card, parentCategory) => {
