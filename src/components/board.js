@@ -36,6 +36,9 @@ class Board extends Component {
   };
 
   onCardBlur = (event, card, parent) => {
+    if (!card.title || card.title === "") {
+      this.setState({ [parent]: this.state[parent].pop() });
+    }
     var idToReplace;
     card.title = event.target.value;
 
