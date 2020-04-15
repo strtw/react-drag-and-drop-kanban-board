@@ -3,21 +3,14 @@ import Card from "./card";
 class Column extends Component {
   constructor(props) {
     super(props);
-    this.ref = React.createRef();
+    this.cardField = React.createRef();
   }
 
   capitalizeFirstLetter(string) {
     return string.replace(string[0], string[0].toUpperCase());
   }
 
-  componentDidUpdate() {
-    console.log(this.ref.current);
-    //this.ref.current.focus();
-  }
-
   render() {
-    //const ref = React.createRef();
-
     return (
       <>
         <div className="column">
@@ -28,7 +21,6 @@ class Column extends Component {
             console.log(arr);
             return (
               <Card
-                ref={arr.length - 1 === index ? this.ref : null}
                 parent={this.props.name}
                 onClick={this.props.onNavClick}
                 onCardBlur={this.props.onCardBlur}
@@ -36,6 +28,11 @@ class Column extends Component {
                 id={card.id}
                 key={card.id}
                 title={card.title}
+                cardField={
+                  arr.length - 1 === index
+                    ? (textArea) => (this.cardField = textArea)
+                    : null
+                } //set ref to child text area, pass as prop
               />
             );
           })}
@@ -43,6 +40,9 @@ class Column extends Component {
             className={"column__add-card"}
             onClick={() => {
               this.props.onClick();
+              setTimeout(() => {
+                this.cardField.focus();
+              }, 0);
             }}
           >
             Add a card +

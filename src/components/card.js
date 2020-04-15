@@ -12,7 +12,10 @@ class Card extends Component {
 
   render() {
     let card = { id: this.props.id, title: this.props.title };
-    const Card = React.forwardRef((props, ref) => (
+    //const Card = React.forwardRef((props, ref) => (
+
+    // );
+    return (
       <div className="card">
         {this.props.orientation === "left" ? (
           <span> </span>
@@ -27,7 +30,7 @@ class Card extends Component {
           </span>
         )}
         <textarea
-          ref={ref}
+          ref={this.props.cardField} //this talks with parent to give parent access to ref
           className="card__field"
           placeholder={"Add a new title..."}
           defaultValue={this.props.title ? this.props.title : null}
@@ -50,8 +53,7 @@ class Card extends Component {
           </span>
         )}
       </div>
-    ));
-    return <Card />;
+    );
   }
 }
 
